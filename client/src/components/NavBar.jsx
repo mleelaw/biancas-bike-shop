@@ -12,6 +12,7 @@ import {
   NavbarToggler,
 } from "reactstrap";
 import { logout } from "../managers/authManager";
+import { getBikesInShopCount } from "../managers/bikeManager";
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
   const [inventory, setInventory] = useState(0);
@@ -20,8 +21,9 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
   const toggleNavbar = () => setOpen(!open);
 
   const getInventory = () => {
-    //implement functionality here....
+    getBikesInShopCount().then(setInventory);
   };
+
 
   useEffect(() => {
     loggedInUser && getInventory();
